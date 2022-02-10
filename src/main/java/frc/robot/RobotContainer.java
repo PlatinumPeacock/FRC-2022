@@ -9,7 +9,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
+//import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.AutoShoot;
@@ -23,8 +23,8 @@ import frc.robot.commands.ElevatorBoth;
 import frc.robot.commands.ElevatorBothReverse;
 import frc.robot.commands.ElevatorHorizontal;
 import frc.robot.commands.ElevatorHorizontalReverse;
-import frc.robot.commands.ElevatorUp;
-import frc.robot.commands.ElevatorUpReverse;
+//import frc.robot.commands.ElevatorUp;
+//import frc.robot.commands.ElevatorUpReverse;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.RotateHeadLeft;
@@ -41,10 +41,10 @@ import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.RotateShooter;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.Button;
+//import edu.wpi.first.wpilibj2.command.button.Button;
 //import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
+//import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -77,15 +77,8 @@ public class RobotContainer {
   private final IntakeReverse intakeReverse;
 
   private final Elevator elevator;
-  private final ElevatorUp elevatorUp;
-  private final ElevatorHorizontal elevatorHorizontal;
-  private final ElevatorBoth elevatorBoth;
-  private final ElevatorUpReverse elevatorUpReverse;
-  private final ElevatorHorizontalReverse elevatorHorizontalReverse;
-  private final ElevatorBothReverse elevatorBothReverse;
 
   private final LimeLight limeLight;
-  private final limeLightRun LimeLightRun;
 
   private final AutonomousOne autonomousOne;
   //private final AutonomousTwo autonomousTwo;
@@ -128,15 +121,8 @@ public class RobotContainer {
   intakeReverse.addRequirements(intake);
     
   elevator = new Elevator();
-  elevatorUp = new ElevatorUp(elevator);
-  elevatorHorizontal = new ElevatorHorizontal(elevator);
-  elevatorBoth = new ElevatorBoth(elevator);
-  elevatorUpReverse = new ElevatorUpReverse(elevator);
-  elevatorHorizontalReverse = new ElevatorHorizontalReverse(elevator);
-  elevatorBothReverse = new ElevatorBothReverse(elevator);
   
   limeLight = new LimeLight();
-  LimeLightRun = new limeLightRun(limeLight, rotateShooter, shooter);
 
   
 
