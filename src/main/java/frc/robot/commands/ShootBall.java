@@ -35,7 +35,7 @@ public class ShootBall extends CommandBase {
   @Override
   public void end(boolean interrupted) {
    shooter.slow();
-   shooter.stop();
+   
   }
 
   // Returns true when the command should end.

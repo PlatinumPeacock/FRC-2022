@@ -25,83 +25,10 @@ public class DriveForwardTimed extends CommandBase {
   public void initialize() {
     timer.reset();
     timer.start();
-    while(timer.get() < 2)
+    while(timer.get() < Constants.DRIVE_FORWARD_TIME)
     {
       driveTrain.driveForward(Constants.AUTONOMOUS_SPEED);
     }
-    /*
-    timer.reset();
-    timer.start();
-    while(timer.get() < 0.5)
-    {
-      driveTrain.turn90Left(Constants.AUTONOMOUS_SPEED);
-    }
-    timer.reset();
-    timer.start();
-    while(timer.get() < 1.5)
-    {
-      driveTrain.driveForward(Constants.AUTONOMOUS_SPEED);
-    }
-    timer.reset();
-    timer.start();
-    while(timer.get() < 0.5)
-    {
-      driveTrain.turn90Right(Constants.AUTONOMOUS_SPEED);
-    }
-    timer.reset();
-    timer.start();
-    while(timer.get() < 5)
-    {
-      driveTrain.driveForward(Constants.AUTONOMOUS_SPEED);
-    }
-    timer.reset();
-    timer.start();
-    while(timer.get() < 0.5)
-    {
-      driveTrain.turn90Right(Constants.AUTONOMOUS_SPEED);
-    }
-    timer.reset();
-    timer.start();
-    while(timer.get() < 1.5)
-    {
-      driveTrain.driveForward(Constants.AUTONOMOUS_SPEED);
-    }
-    timer.reset();
-    timer.start();
-    while(timer.get() < 0.5)
-    {
-      driveTrain.turn90Right(Constants.AUTONOMOUS_SPEED);
-    }
-    timer.reset();
-    timer.start();
-    while(timer.get() < 5)
-    {
-      driveTrain.driveForward(Constants.AUTONOMOUS_SPEED);
-    }
-    timer.reset();
-    timer.start();
-    while(timer.get() < 0.5)
-    {
-      driveTrain.turn90Right(Constants.AUTONOMOUS_SPEED);
-    }
-    timer.reset();
-    timer.start();
-    while(timer.get() < 1)
-    {
-      driveTrain.driveForward(Constants.AUTONOMOUS_SPEED);
-    }
-    timer.reset();
-    timer.start();
-    while(timer.get() < 0.5)
-    {
-      driveTrain.turn90Left(Constants.AUTONOMOUS_SPEED);
-    }
-    timer.reset();
-    timer.start();
-    while(timer.get() < 1)
-    {
-      driveTrain.driveForward(Constants.AUTONOMOUS_SPEED);
-    }*/
     finish = true;
   }
 

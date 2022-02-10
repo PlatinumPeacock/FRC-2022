@@ -7,7 +7,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 
 
-
 //import edu.wpi.first.wpilibj.Joystick;
 
 /**
@@ -44,7 +43,7 @@ public final class Constants {
 	public static final int RIGHT_TRIGGER = 3;
     public static final double DRIVETRAINSPEED = 1.0;
 	public static final double DRIVE_FORWARD_TIME = 4.0;
-	public static final double AUTONOMOUS_SPEED = 0.2;
+	public static final double AUTONOMOUS_SPEED = -0.5;
 	public final static Joystick JOYSTICK1 =  new Joystick(0);
 	public static final int JOYSTICK11 = 0; //the port numbers for robot container
 	public final static Joystick JOYSTICK2 =  new Joystick(1);
@@ -61,18 +60,6 @@ public final class Constants {
 	public static final double SETPOINT_FORWARD = 3.0;
 	public static final double SHOOTERFEEDER_SPEED = 0;
     public static final double ELEVATOR_SPEED = 1.0;
-	public static final double  UPDATE_FREQUENCY   = 15;     // miliseconds (maybe change to microseconds)
-    public static final double  RECORDING_DURATION   = 10;      // seconds
-    public static final String  SAVE_FILE_EXTENSION   = ".lmao";// extension for files that robotArrays are saved in
-    public static final String  SAVE_FILE_PATH        = "/home/lvuser/";// path on the roborio to keep robotArray files( thanks for ruining the cool looking code )
-    public static final String  SAVE_FILE_NAME        = "test"; // name of the file to make or read
-    public static final boolean PRINT_DEBUG_INFO      = true;   // true to print info about the recoring and playback
-    public static final boolean VERBOSE_DEBUG_PRINT   = true;   // true to print a lot of in depth info about recording and playback
-    public static final boolean SHOULD_RECORD         = true;   // if false will block the "start recording" method
-    public static final boolean INTERPOLATE_VALUES    = true;   // should data retreived between updates be interpolated (a method of constructing new data points between two given data points)
-  
-
-
 
    
 	

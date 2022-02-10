@@ -79,16 +79,6 @@ public class DriveTrainTrial extends SubsystemBase {
   {
     drive.tankDrive(speed, speed);
   }
-/*
-  public void turn90Left(double speed)
-  {
-    drive.tankDrive(speed, (speed * -1));
-  }
-
-  public void turn90Right(double speed)
-  {
-    drive.tankDrive((speed * -1), speed);
-  }*/
 
   public boolean driveToDistance(double setPointDistance, double speed)
   {

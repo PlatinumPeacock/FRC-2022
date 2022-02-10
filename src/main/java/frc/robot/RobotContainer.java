@@ -88,6 +88,8 @@ public class RobotContainer {
   private final limeLightRun LimeLightRun;
 
   private final AutonomousOne autonomousOne;
+  //private final AutonomousTwo autonomousTwo;
+
  SendableChooser<Command> chooser = new SendableChooser<>();
   
 
@@ -133,12 +135,13 @@ public class RobotContainer {
   elevatorHorizontalReverse = new ElevatorHorizontalReverse(elevator);
   elevatorBothReverse = new ElevatorBothReverse(elevator);
   
-
-
   limeLight = new LimeLight();
-  LimeLightRun = new limeLightRun(limeLight);
+  LimeLightRun = new limeLightRun(limeLight, rotateShooter, shooter);
 
-  autonomousOne = new AutonomousOne(driveTrain);
+  
+
+  autonomousOne = new AutonomousOne(driveTrain, shooter);
+  //autonomousTwo = new AutonomousTwo(driveTrain, shooter);
 
   //Add choices as options here
  //chooser.addOption("Autonomous Two", autonomousTwo);
@@ -146,7 +149,7 @@ public class RobotContainer {
   chooser.setDefaultOption("Autonomous One", autonomousOne);
  //chooser.setDefaultOption("Autonomous One", autonomousOne);
   //Add choice so smart dashboard
-  //SmartDashboard.putData("Autonomous", chooser);
+  SmartDashboard.putData("Autonomous", chooser);
 
   //Initialize camera
   //UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
@@ -178,7 +181,7 @@ public class RobotContainer {
       intakeButton.whileHeld(new IntakeBall(intake));
 
       JoystickButton elevatorHorizontalButton = new JoystickButton(driverJoystick3, XboxController.Button.kBumperRight.value);
-     elevatorHorizontalButton.whileHeld(new ElevatorHorizontal(elevator));
+      elevatorHorizontalButton.whileHeld(new ElevatorHorizontal(elevator));
 
       JoystickButton elevatorBothButton = new JoystickButton(driverJoystick3, XboxController.Button.kBumperLeft.value);
       elevatorBothButton.whileHeld(new ElevatorBoth(elevator));
@@ -193,9 +196,7 @@ public class RobotContainer {
       elevatorReverseButton.whileHeld(new ElevatorBothReverse(elevator));
 
       JoystickButton cameraButton = new JoystickButton(driverJoystick3, XboxController.Button.kX.value);
-      cameraButton.whileHeld(new limeLightRun(limeLight));
-
-
+      cameraButton.whileHeld(new limeLightRun(limeLight, rotateShooter, shooter));
 
       
 
@@ -221,4 +222,3 @@ public class RobotContainer {
   return chooser.getSelected();
   }
 }
-

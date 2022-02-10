@@ -11,9 +11,9 @@ import frc.robot.subsystems.Shooter;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutonomousOne extends SequentialCommandGroup {
-  /** Creates a new AutonomousOne. */
-  public AutonomousOne(DriveTrainTrial dt, Shooter s) {
-    addCommands(new DriveForwardTimed(dt), new AutoShoot(s));
+public class AutonomousTwo extends SequentialCommandGroup {
+  /** Creates a new AutonomousTwo. */
+  public AutonomousTwo(DriveTrainTrial dt, Shooter s) {
+    addCommands(new DriveToDistance(dt), new AutoShoot(s));
   }
 }
