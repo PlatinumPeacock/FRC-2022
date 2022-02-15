@@ -16,6 +16,13 @@ public class limeLightRun extends CommandBase {
   LimeLight limeLight;
   RotateShooter rotateShooter;
   Shooter shooter;
+
+  //limelight variables
+  double tx;
+  double ty;
+  double ta;
+  double tv;
+
   /** Creates a new limeLightRun. */
   public limeLightRun(LimeLight l, RotateShooter rs, Shooter s) {
     limeLight = l;
@@ -39,36 +46,58 @@ public class limeLightRun extends CommandBase {
 
   // won't turn right toward a target and light doesn't turn off when button is released
 
+  /*
   if(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0) == 1)
   {
-    while(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0) < -7)
+    UpdateLimeLightTracking();
+
+    while(tx < -7)
     {
-      rotateShooter.rotateShooterHead(-0.1);
-      if(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0) > -7)
-      {
-        rotateShooter.stop();
-      }
+      rotateShooter.rotateShooterHead(-0.07);
+      UpdateLimeLightTracking();
     }
     
-    while(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0) > 7)
+    while(tx > 7)
     {
-      rotateShooter.rotateShooterHead(0.1);
-      if(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0) < 7)
-      {
-        rotateShooter.stop();
-      }
+      rotateShooter.rotateShooterHead(0.07);
+      UpdateLimeLightTracking();    
     }
 
+    if(tx > 7 && tx < -7)
+    {
+      rotateShooter.stop();
+    }
 
-    if(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0) >= -7 && NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0) <= 7)
+    if(tx >= -7 && tx <= 7)
     {
       shooter.shootBall(1);
     }
     
      
   }
-  
-  
+  */
+  UpdateLimeLightTracking();
+  while(tx < 0)
+  {
+    rotateShooter.rotateShooterHead(-0.09);
+    if(tx > -7)
+    {
+      rotateShooter.stop();
+      break;
+    }
+    UpdateLimeLightTracking();
+  }
+
+  while(tx > 0)
+  {
+    rotateShooter.rotateShooterHead(0.09);
+    if(tx < 7)
+    {
+      rotateShooter.stop();
+      break;
+    }
+    UpdateLimeLightTracking();
+  }
 }
   
   
@@ -87,5 +116,13 @@ public class limeLightRun extends CommandBase {
   @Override
   public boolean isFinished() {
     return false;
+  }
+
+  //updates limelight info
+  public void UpdateLimeLightTracking(){
+    tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+    tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+    ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+    ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
   }
 }
