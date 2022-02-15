@@ -182,7 +182,7 @@ public class RobotContainer {
       elevatorReverseButton.whileHeld(new ElevatorBothReverse(elevator));
 
       JoystickButton cameraButton = new JoystickButton(driverJoystick3, XboxController.Button.kX.value);
-      cameraButton.whileHeld(new limeLightRun(limeLight, rotateShooter, shooter));
+      cameraButton.whileHeld(new limeLightRun(limeLight, rotateShooter, shooter, driveTrain));
 
       
 

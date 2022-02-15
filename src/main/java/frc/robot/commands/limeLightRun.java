@@ -7,7 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LimeLight;
 import edu.wpi.first.networktables.NetworkTableInstance;
-//test
+import frc.robot.subsystems.DriveTrainTrial;
 import frc.robot.subsystems.RotateShooter;
 import frc.robot.subsystems.Shooter;
 
@@ -16,20 +16,24 @@ public class limeLightRun extends CommandBase {
   LimeLight limeLight;
   RotateShooter rotateShooter;
   Shooter shooter;
+  DriveTrainTrial driveTrain;
 
   //limelight variables
   double tx;
   double ty;
   double ta;
   double tv;
+  double distance;
 
   /** Creates a new limeLightRun. */
-  public limeLightRun(LimeLight l, RotateShooter rs, Shooter s) {
+  public limeLightRun(LimeLight l, RotateShooter rs, Shooter s, DriveTrainTrial d) {
     limeLight = l;
     rotateShooter = rs;
     addRequirements(rotateShooter);
     shooter = s;
     addRequirements(shooter);
+    driveTrain = d;
+    addRequirements(driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -76,7 +80,20 @@ public class limeLightRun extends CommandBase {
      
   }
   */
-  UpdateLimeLightTracking();
+  updateLimeLightTracking();
+  
+  while(distance > 15)
+  {
+    driveTrain.driveForward(-0.5);
+    updateLimeLightTracking();
+  }
+  driveTrain.stop();
+  while(distance < 10)
+  {
+    driveTrain.driveForward(0.5);
+    updateLimeLightTracking();
+  }
+  driveTrain.stop();
   while(tx < 0)
   {
     rotateShooter.rotateShooterHead(-0.09);
@@ -85,7 +102,7 @@ public class limeLightRun extends CommandBase {
       rotateShooter.stop();
       break;
     }
-    UpdateLimeLightTracking();
+    updateLimeLightTracking();
   }
 
   while(tx > 0)
@@ -96,15 +113,16 @@ public class limeLightRun extends CommandBase {
       rotateShooter.stop();
       break;
     }
-    UpdateLimeLightTracking();
+    updateLimeLightTracking();
   }
+
 }
   
   
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+    //NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
     //shooter.shootBall(0);
     //rotateShooter.rotateShooterHead(0); 
 
@@ -119,10 +137,11 @@ public class limeLightRun extends CommandBase {
   }
 
   //updates limelight info
-  public void UpdateLimeLightTracking(){
+  public void updateLimeLightTracking(){
     tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
     tx = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
     ty = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
     ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+    distance = ((26/3)-2.75) / Math.tan(Math.toRadians(30 + ty));
   }
 }
