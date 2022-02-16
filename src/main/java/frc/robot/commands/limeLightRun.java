@@ -7,9 +7,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LimeLight;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrainTrial;
 import frc.robot.subsystems.RotateShooter;
 import frc.robot.subsystems.Shooter;
+//test imports
+import edu.wpi.first.wpilibj.Joystick;
 
 
 public class limeLightRun extends CommandBase {
@@ -17,6 +20,10 @@ public class limeLightRun extends CommandBase {
   RotateShooter rotateShooter;
   Shooter shooter;
   DriveTrainTrial driveTrain;
+
+  //testing joystick inputs
+  Joystick joyStick1;
+  Joystick joyStick2;
 
   //limelight variables
   double tx;
@@ -26,7 +33,8 @@ public class limeLightRun extends CommandBase {
   double distance;
 
   /** Creates a new limeLightRun. */
-  public limeLightRun(LimeLight l, RotateShooter rs, Shooter s, DriveTrainTrial d) {
+  public limeLightRun(LimeLight l, RotateShooter rs, Shooter s, DriveTrainTrial d, Joystick js1, Joystick js2) 
+  {
     limeLight = l;
     rotateShooter = rs;
     addRequirements(rotateShooter);
@@ -34,6 +42,11 @@ public class limeLightRun extends CommandBase {
     addRequirements(shooter);
     driveTrain = d;
     addRequirements(driveTrain);
+
+    //testing joysticks (continued)
+    joyStick1 = js1;
+    joyStick2 = js2;
+
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -47,41 +60,11 @@ public class limeLightRun extends CommandBase {
   @Override
   public void execute(){
   NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
-
-  // won't turn right toward a target and light doesn't turn off when button is released
-
-  /*
-  if(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0) == 1)
-  {
-    UpdateLimeLightTracking();
-
-    while(tx < -7)
-    {
-      rotateShooter.rotateShooterHead(-0.07);
-      UpdateLimeLightTracking();
-    }
-    
-    while(tx > 7)
-    {
-      rotateShooter.rotateShooterHead(0.07);
-      UpdateLimeLightTracking();    
-    }
-
-    if(tx > 7 && tx < -7)
-    {
-      rotateShooter.stop();
-    }
-
-    if(tx >= -7 && tx <= 7)
-    {
-      shooter.shootBall(1);
-    }
-    
-     
-  }
-  */
+  
   updateLimeLightTracking();
   
+  //testing joystick code
+/* ***SAVE*** ***WORKING CODE***
   while(distance > 15)
   {
     driveTrain.driveForward(-0.5);
@@ -94,8 +77,11 @@ public class limeLightRun extends CommandBase {
     updateLimeLightTracking();
   }
   driveTrain.stop();
+*/
+  driveTrain.driveWithJoysticks(Constants.DRIVETRAINSPEED);
   while(tx < 0)
   {
+    driveTrain.driveWithJoysticks(Constants.DRIVETRAINSPEED);
     rotateShooter.rotateShooterHead(-0.09);
     if(tx > -7)
     {
@@ -107,6 +93,7 @@ public class limeLightRun extends CommandBase {
 
   while(tx > 0)
   {
+    driveTrain.driveWithJoysticks(Constants.DRIVETRAINSPEED);
     rotateShooter.rotateShooterHead(0.09);
     if(tx < 7)
     {
@@ -117,6 +104,7 @@ public class limeLightRun extends CommandBase {
   }
 
 }
+
   
   
   // Called once the command ends or is interrupted.
@@ -128,6 +116,7 @@ public class limeLightRun extends CommandBase {
 
     shooter.stop();
     rotateShooter.stop();
+    driveTrain.stop();
   }
 
   // Returns true when the command should end.

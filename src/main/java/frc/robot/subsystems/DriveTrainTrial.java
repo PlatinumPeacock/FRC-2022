@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.PWMVictorSPX; //OG
 //import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Joystick;
+//import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -69,7 +69,7 @@ public class DriveTrainTrial extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void driveWithJoysticks(Joystick controller, double speed) {
+  public void driveWithJoysticks(double speed) {
     drive.tankDrive(Constants.JOYSTICK1.getY() * speed, Constants.JOYSTICK2.getY() * speed);
     // drive.tankDrive((JOYSTICK1.getY() * speed), (JOYSTICK2.getY() * speed));
   }
